@@ -3,68 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foodtruck: Yum yum gim me sum
-    </title>
+    <title>Yum Yum Gim Me Sum</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="javascript/script.js">
+    <script type="module" defer src="javascript/script.js"></script>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>Yum Yum Gim Me Sum</h1>
-      </header>
-    <section>
-    <div>
-        <img src="/images/food truck.jpg" alt="">
-        <button>Order</button>
-    </div>
-</section>
+        <h1>YUM YUM GIM ME SUM</h1>
+        <div class="cart-icon" onclick="showCart()">
+            <img src="images/cart.svg" alt="Cart">
+            <span id="cart-count">0</span>
+        </div>
+    </header>
+
+    <!-- Welcome Section -->
+    <section class="home-section">
+        <div class="welcome-text">
+            <h2>Välkommen till Yum Yum Gim Me Sum!</h2>
+            <p>Beställ dina favoriträtter med ett klick. Utforska vår meny med utsökta wontons, dipsåser och drycker.</p>
+            <button onclick="scrollToMenu()">SE MENYN</button>
+        </div>
+        <div class="food-truck">
+            <img src="images/food truck.jpg" alt="Food Truck">
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <h2>MENY</h2>
+        <div class="menu-container">
+            <div class="menu-item">
+                <h3>KARLSTAD <span>9 SEK</span></h3>
+                <p>kantarell, scharlottenlök, morot, bladpersilja</p>
+                <button onclick="addToCart('Karlstad', 9)">+</button>
+            </div>
+            <div class="menu-item">
+                <h3>BANGKOK <span>9 SEK</span></h3>
+                <p>morot, salladslök, chili, kokos, lime, koriander</p>
+                <button onclick="addToCart('Bangkok', 9)">+</button>
+            </div>
+            <div class="menu-item">
+                <h3>HO CHI MINH <span>9 SEK</span></h3>
+                <p>kål, salladslök, chili, vitlök, ingefära, tofu</p>
+                <button onclick="addToCart('Ho Chi Minh', 9)">+</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Section -->
+    <section class="cart-section" id="cart">
+        <h2>Din Beställning</h2>
+        <div id="cart-items"></div>
+        <div class="cart-total">
+            <h3>Total: <span id="total-price">0 SEK</span></h3>
+            <button onclick="placeOrder()">TAKE MY MONEY!</button>
+        </div>
+    </section>
+
+    <!-- Order Status Section -->
+    <section class="order-status" id="status">
+        <h2>DINA WONTONS TILLAGAS!</h2>
+        <p>ETA 5 MIN</p>
+        <p>#4KJWSD2</p>
+        <button>SE KVITTO</button>
+        <button onclick="resetOrder()">GÖR EN NY BESTÄLLNING</button>
+    </section>
+
     
-    <div class="menu-container">
-        <div class="menu-header">MENY</div>
-
-        <!-- Main dishes -->
-        <div class="menu-item">
-            <h3>KARLSTAD</h3>
-            <span>9 SEK</span>
-        </div>
-        <div class="menu-item">
-            <h3>BANGKOK</h3>
-            <span>9 SEK</span>
-        </div>
-        <div class="menu-item">
-            <h3>HO CHI MINH</h3>
-            <span>9 SEK</span>
-        </div>
-        <div class="menu-item">
-            <h3>PARIS</h3>
-            <span>9 SEK</span>
-        </div>
-        <div class="menu-item">
-            <h3>OAXACA</h3>
-            <span>9 SEK</span>
-        </div>
-
-        <!-- Sides -->
-        <div class="sides-container">
-            <div class="sides-header">DIPSÅS</div>
-            <button class="side-item">Sweet Chili</button>
-            <button class="side-item">Wonton Std</button>
-            <button class="side-item">Sweet & Sour</button>
-            <button class="side-item">Hot Mango</button>
-            <button class="side-item">Chili Mayo</button>
-            <button class="side-item">Guacamole</button>
-        </div>
-
-        <!-- Drinks -->
-        <div class="sides-container">
-            <div class="sides-header">DRICKA</div>
-            <button class="side-item">Fanta Orange</button>
-            <button class="side-item">Fanta Exotic</button>
-            <button class="side-item">Coca Cola</button>
-            <button class="side-item">Sprite</button>
-            <button class="side-item">LOKA Granatäpple</button>
-            <button class="side-item">LOKA Citrus</button>
-        </div>
-    </div>
 </body>
 </html>
