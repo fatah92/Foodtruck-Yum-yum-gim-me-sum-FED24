@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yum Yum Gim Me Sum</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Modular JavaScript Files -->
+    <script type="module" defer src="javascript/api.js"></script>
+    <script type="module" defer src="javascript/cart.js"></script>
+    <script type="module" defer src="javascript/eta.js"></script>
     <script type="module" defer src="javascript/script.js"></script>
 </head>
 <body>
     <!-- Header -->
     <header>
         <h1>YUM YUM GIM ME SUM</h1>
-       
     </header>
 
     <!-- Welcome Section -->
@@ -28,14 +32,17 @@
 
     <!-- Menu Section -->
     <section class="menu-section" id="menu">
-        <h2>MENY</h2>
-        <div class="cart-icon" onclick="showCart()">
-            <img src="images/cart.svg" alt="Cart">
-            <span id="cart-count">0</span>
+        <div class="menu-header">
+            <h2>MENY</h2>
+            <div class="cart-icon" onclick="showCart()">
+                <img src="images/cart.svg" alt="Cart">
+                <span id="cart-count">0</span>
+            </div>
         </div>
         <div class="menu-container">
+            <!-- Menu Items -->
             <div class="menu-item">
-                <h3>KARLSTAD ..............<span>9 SEK</span></h3>
+                <h3>KARLSTAD <span>9 SEK</span></h3>
                 <p>kantarell, scharlottenlök, morot, bladpersilja</p>
                 <button onclick="addToCart('Karlstad', 9)">+</button>
             </div>
@@ -53,7 +60,7 @@
     </section>
 
     <!-- Cart Section -->
-    <section class="cart-section" id="cart">
+    <section class="cart-section" id="cart" style="display: none;">
         <h2>Din Beställning</h2>
         <div id="cart-items"></div>
         <div class="cart-total">
@@ -63,14 +70,12 @@
     </section>
 
     <!-- Order Status Section -->
-    <section class="order-status" id="status">
+    <section class="order-status" id="status" style="display: none;">
         <h2>DINA WONTONS TILLAGAS!</h2>
         <p>ETA 5 MIN</p>
         <p>#4KJWSD2</p>
         <button>SE KVITTO</button>
         <button onclick="resetOrder()">GÖR EN NY BESTÄLLNING</button>
     </section>
-
-    
 </body>
 </html>
