@@ -1,18 +1,25 @@
-import { renderMenu } from './menu.js';
-import { showCart, resetOrder } from './cart.js';
+import { fetchMenu } from './menu.js';
 
-// Körs när sidan laddas
-document.addEventListener("DOMContentLoaded", () => {
-    renderMenu(); // Ladda menyn
+document.addEventListener('DOMContentLoaded', async () => {
+    const menuData = await fetchMenu();
+    if (menuData) {
+        renderMenu(menuData.items);
+    }
 });
 
-// Smooth scroll till meny
-window.scrollToMenu = () => {
-    document.getElementById("menu").scrollIntoView({ behavior: "smooth" });
-};
+// Renderar menyn i DOM
+function renderMenu(items) {
+    const menuContainer = document.querySelector('.menu-container');
+    menuContainer.innerHTML = ''; // Rensa befintligt innehåll
 
-// Gör showCart tillgänglig globalt för onclick
-window.showCart = showCart;
-
-// Gör resetOrder tillgänglig globalt för onclick
-window.resetOrder = resetOrder;
+    items.forEach(item => {
+        const menuItem = document.createElement('div');
+        menuItem.classList.add('menu-item');
+        menuItem.innerHTML = `
+            <h3>${item.name} <span>${item.price} SEK</span></h3>
+            <p>${item.description}</p>
+            <button data-item="${item.name}" data-price="${item.price}">+</button>
+        `;
+        menuContainer.appendChild(menuItem);
+    });
+}

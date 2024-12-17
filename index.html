@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Modular JavaScript Files -->
-    <script type="module" defer src="javascript/api.js"></script>
-    <script type="module" defer src="javascript/cart.js"></script>
+    <script type="module" defer src="javascript/setup.js"></script>
     <script type="module" defer src="javascript/menu.js"></script>
+    <script type="module" defer src="javascript/cart.js"></script>
     <script type="module" defer src="javascript/script.js"></script>
 </head>
 <body>
@@ -23,7 +23,7 @@
         <div class="welcome-text">
             <h2>Välkommen till Yum Yum Gim Me Sum!</h2>
             <p>Beställ dina favoriträtter med ett klick. Utforska vår meny med utsökta wontons, dipsåser och drycker.</p>
-            <button onclick="scrollToMenu()">SE MENYN</button>
+            <button id="scroll-to-menu-btn">SE MENYN</button>
         </div>
         <div class="food-truck">
             <img src="images/food truck.jpg" alt="Food Truck">
@@ -34,7 +34,7 @@
     <section class="menu-section" id="menu">
         <div class="menu-header">
             <h2>MENY</h2>
-            <div class="cart-icon" onclick="showCart()">
+            <div class="cart-icon" id="show-cart-btn">
                 <img src="images/cart.svg" alt="Cart">
                 <span id="cart-count">0</span>
             </div>
@@ -50,11 +50,13 @@
         <div id="cart-items"></div>
         <div class="cart-total">
             <h3>Total: <span id="total-price">0 SEK</span></h3>
-            <button onclick="placeOrder()">TAKE MY MONEY!</button>
+            <button id="place-order-btn">TAKE MY MONEY!</button>
         </div>
     </section>
 
     <!-- Order Status Section -->
-    <section class="order-status" id="status" style="display: none;"></section>
+    <section class="order-status" id="status" style="display: none;">
+        <!-- Dynamiskt innehåll genereras här -->
+    </section>
 </body>
 </html>

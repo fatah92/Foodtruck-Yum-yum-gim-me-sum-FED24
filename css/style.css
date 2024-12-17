@@ -129,20 +129,26 @@ header h1 {
 .cart-icon {
     position: relative;
     cursor: pointer;
-    background-color: #ddd;
-}
-.cart-section, .order-status {
-    display: none;
-    background: white;
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 10px;
-    text-align: center;
 }
 
-.cart-total button, .order-status button {
-    background: #4caf92;
+.cart-icon img {
+    width: 40px;
+}
+
+.cart-icon span {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #ff5722; /* Använd befintlig färg */
     color: white;
-    border: none;
-    padding: 10px;
+    border-radius: 50%;
+    width: 24px;  /* Fixad bredd */
+    height: 24px; /* Fixad höjd */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
 }
