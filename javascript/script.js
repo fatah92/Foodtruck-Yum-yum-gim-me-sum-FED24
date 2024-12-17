@@ -1,11 +1,11 @@
-import { fetchMenu } from './menu.js';
+/* import { fetchMenu } from './menu.js';
 
 // Globala variabler
 let cart = [];
-let totalPrice = 0;
+let totalPrice = 0; */
 
 // Starta applikationen när DOM är redo
-document.addEventListener('DOMContentLoaded', async () => {
+/* document.addEventListener('DOMContentLoaded', async () => {
     const menuData = await fetchMenu(); // Hämta menyn från API
     if (menuData) {
         renderMenu(menuData.items); // Rendera menyn
@@ -18,10 +18,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Lägg till event listener för att visa varukorgen
     document.querySelector('#show-cart-btn').addEventListener('click', showCart);
-});
+}); */
 
 // Funktion för att rendera menyn i DOM
-function renderMenu(items) {
+/* function renderMenu(items) {
     const menuContainer = document.querySelector('.menu-container');
     menuContainer.innerHTML = ''; // Rensa eventuell tidigare meny
 
@@ -50,16 +50,16 @@ function renderMenu(items) {
             addToCart(itemName, itemPrice);
         });
     });
-}
+} */
 
 // Funktion för att visa felmeddelande
-function displayMenuError() {
+/* function displayMenuError() {
     const menuContainer = document.querySelector('.menu-container');
     menuContainer.innerHTML = `<p style="color: white; text-align: center;">Menyn kunde inte hämtas.</p>`;
-}
+} */
 
 // Funktion för att lägga till objekt i varukorgen
-function addToCart(itemName, itemPrice) {
+/* function addToCart(itemName, itemPrice) {
     cart.push({ name: itemName, price: itemPrice });
     totalPrice += itemPrice;
     updateCartCount();
@@ -84,4 +84,4 @@ function showCart() {
 
     cartTotalContainer.textContent = `${totalPrice} SEK`;
     document.querySelector('.cart-section').style.display = 'block';
-}
+} */

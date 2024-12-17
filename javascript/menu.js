@@ -22,40 +22,66 @@ export async function fetchMenu() {
     }
 }
 
-// Function to create and render menu items
+// Function to render menu items in DOM
 export function renderMenu(items) {
     const menuContainer = document.querySelector('.menu-container');
     menuContainer.innerHTML = ''; // Clear previous content
 
+    // Filter and render categories
+    const wontonItems = items.filter(item => item.type === 'wonton');
+    const dipsItems = items.filter(item => item.type === 'dip');
+    const drinkItems = items.filter(item => item.type === 'drink');
+
+    renderCategory(menuContainer, 'WONTONS', wontonItems);
+    renderSelectableSection(menuContainer, 'DIPSÅS', dipsItems, 19);
+    renderSelectableSection(menuContainer, 'DRICKA', drinkItems, 19);
+}
+
+// Function to render Wonton items
+function renderCategory(container, categoryName, items) {
+    const categoryTitle = document.createElement('h2');
+    categoryTitle.innerText = categoryName;
+    container.appendChild(categoryTitle);
+
     items.forEach(item => {
-        // Create menu card
-        const wontonContainer = document.createElement("div");
-        const wontonTitleContainer = document.createElement("div");
-        const wontonTitle = document.createElement("h3");
-        const wontonPrice = document.createElement("h3");
-        const dotBox = document.createElement("div");
-        const wontonIngredients = document.createElement("p");
-
-        // Add attributes and classes
-        wontonContainer.setAttribute("role", "button");
-        wontonContainer.setAttribute("tabindex", "0");
-        wontonContainer.classList.add("dish-container");
-        wontonTitleContainer.classList.add("title-container");
-        dotBox.classList.add("dot-box");
-
-        // Set content
-        wontonTitle.innerText = item.name.toUpperCase();
-        wontonPrice.innerText = `${item.price} SEK`;
-        wontonIngredients.innerText = item.ingredients.join(", ");
-
-        // Append elements together
-        wontonContainer.append(wontonTitleContainer, wontonIngredients);
-        wontonTitleContainer.append(wontonTitle, dotBox, wontonPrice);
-
-        // Add to cart on click
-        wontonContainer.addEventListener("click", () => addToCart(item));
-
-        // Append to menu container
-        menuContainer.appendChild(wontonContainer);
+        const itemContainer = document.createElement("div");
+        itemContainer.classList.add("dish-container");
+        itemContainer.innerHTML = `
+            <h3>${item.name} ............................<span>${item.price} SEK</span></h3>
+            <p>${item.ingredients.join(", ")}</p>
+        `;
+        itemContainer.addEventListener("click", () => addToCart(item));
+        container.appendChild(itemContainer);
     });
+}
+
+// Generalized function for selectable button sections (Dipsås and Dricka)
+function renderSelectableSection(container, categoryName, items, price) {
+    const section = document.createElement('div');
+    section.classList.add('selectable-section');
+
+    const title = document.createElement('h2');
+    title.innerHTML = `${categoryName} <span>${price} SEK</span>`;
+    section.appendChild(title);
+
+    const buttonContainer = document.createElement('div');
+    buttonContainer.classList.add('selectable-container');
+
+    items.forEach(item => {
+        const button = document.createElement('button');
+        button.textContent = item.name;
+        button.classList.add('selectable-button');
+
+        // Event listener to toggle active class and add to cart
+        button.addEventListener('click', () => {
+            buttonContainer.querySelectorAll('.selectable-button').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            addToCart(item);
+        });
+
+        buttonContainer.appendChild(button);
+    });
+
+    section.appendChild(buttonContainer);
+    container.appendChild(section);
 }
