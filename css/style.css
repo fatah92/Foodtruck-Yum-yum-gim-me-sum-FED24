@@ -76,9 +76,9 @@ header h1 {
 }
 
 .food-truck img {
-    width: 100%;
-    max-width: 400px;
+    width: 45em;
     border-radius: 10px;
+    height: 39em;
 }
 
 /* Menu Section */
