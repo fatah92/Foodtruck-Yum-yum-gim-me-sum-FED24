@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Uppdatera cart-badge (initialt)
     updateCartCount();
+
+    // Lägg till event listener för att visa varukorgen
+    document.querySelector('#show-cart-btn').addEventListener('click', showCart);
 });
 
 // Funktion för att rendera menyn i DOM
@@ -25,14 +28,18 @@ function renderMenu(items) {
     items.forEach(item => {
         const menuItem = document.createElement('div');
         menuItem.classList.add('menu-item');
+        
+        // Skriv ut ingredienser som en lista
+        const ingredients = item.ingredients ? item.ingredients.join(', ') : 'Okända ingredienser';
+        
         menuItem.innerHTML = `
-            <h3>${item.name} ............................<span>${item.price} SEK</span></h3>
+            <h3>${item.name} ..................................<span>${item.price} SEK</span></h3>
            
-            <button data-item="${item.name}" data-price="${item.price}">+</button>
+            <button data-item="${item.name}" data-price="${item.price}">+</button><b>
+             <span><p>${ingredients}</span></p> <!-- Ingredienslista här -->
         `;
         menuContainer.appendChild(menuItem);
     });
-     //<p>${item.description}</p>
 
     // Lägg till event listeners för alla knappar
     const buttons = document.querySelectorAll('.menu-item button');

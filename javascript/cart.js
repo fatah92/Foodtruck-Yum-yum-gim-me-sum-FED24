@@ -1,35 +1,30 @@
-export let cart = [];
-export let totalPrice = 0;
+let cart = [];
+let totalPrice = 0;
 
-// Lägg till produkt i varukorgen
-export function addToCart(item, price) {
-    cart.push({ item, price });
-    totalPrice += price;
+// Function to add an item to the cart
+export function addToCart(item) {
+    cart.push(item);
+    totalPrice += item.price;
     updateCartCount();
+    console.log(`Added to cart: ${item.name} - ${item.price} SEK`);
 }
 
-// Uppdatera räkningen av varor i korgen
-export function updateCartCount() {
-    document.getElementById("cart-count").textContent = cart.length;
+// Function to update cart badge
+function updateCartCount() {
+    const cartCount = document.querySelector('#cart-count');
+    cartCount.textContent = cart.length;
 }
 
-// Visa kundvagnen
+// Function to display the cart
 export function showCart() {
-    const cartItems = document.getElementById("cart-items");
-    cartItems.innerHTML = ""; // Rensa tidigare visning
+    const cartItemsContainer = document.querySelector('#cart-items');
+    const cartTotalContainer = document.querySelector('#total-price');
 
+    cartItemsContainer.innerHTML = ''; // Clear previous items
     cart.forEach(item => {
-        cartItems.innerHTML += `<div>${item.item} - ${item.price} SEK</div>`;
+        cartItemsContainer.innerHTML += `<div>${item.name} - ${item.price} SEK</div>`;
     });
 
-    document.getElementById("total-price").textContent = `${totalPrice} SEK`;
-    document.getElementById("cart").style.display = "block";
-}
-
-// Återställ varukorg
-export function resetOrder() {
-    cart = [];
-    totalPrice = 0;
-    updateCartCount();
-    document.getElementById("status").style.display = "none";
+    cartTotalContainer.textContent = `${totalPrice} SEK`;
+    document.querySelector('#cart').style.display = 'block';
 }

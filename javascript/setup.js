@@ -1,17 +1,16 @@
-import { fetchApiKey, createTenant } from './api.js';
-import { renderMenu } from './menu.js';
+import { fetchMenu, renderMenu } from './menu.js';
 
-async function initializeApp() {
-    console.log("Startar upp appen...");
+document.addEventListener('DOMContentLoaded', async () => {
+    const menuData = await fetchMenu(); // Fetch menu from API
+    if (menuData) {
+        renderMenu(menuData); // Render the menu dynamically
+    } else {
+        console.error('Failed to load menu');
+        document.querySelector('.menu-container').innerHTML = '<p>Menyn kunde inte hämtas.</p>';
+    }
 
-    // 1. Hämta API-nyckel
-    await fetchApiKey();
-
-    // 2. Skapa Tenant med ditt namn
-    await createTenant("Abdul Fatah");
-
-    // 3. Rendera menyn
-    await renderMenu();
-}
-
-initializeApp();
+    // Attach cart button functionality
+    document.querySelector('#show-cart-btn').addEventListener('click', () => {
+        import('./cart.js').then(module => module.showCart());
+    });
+});
