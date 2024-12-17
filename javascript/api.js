@@ -1,9 +1,13 @@
-const apiUrl = 'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com';
-const tenantName = "Abdul Fatah"; // Ange ditt namn här
+//const apiUrl = 'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com';
+//const tenantName = "Abdul"; // Ange ditt namn här
+
+
 
 // Variabler för att spara API-nyckel och Tenant-ID
-let apiKey = '';
-let tenantId = '';
+const apiKey = 'yum-7BTxHCyHhzIME5TI';
+const tenantId = 'i46r';
+const apiUrl = 'https://fdnzawlcf6.execute-api.eu-north-1.amazonaws.com';
+
 
 // Funktion för att hämta en API-nyckel
 export async function fetchApiKey() {
@@ -27,44 +31,42 @@ export async function createTenant(name) {
         return;
     }
     try {
-        const options = {
-            method: 'POST',
-            body: JSON.stringify({ name: name }),
-            headers: {
-                "Content-Type": 'application/json',
-                "x-zocom": apiKey
-            }
-        };
-        const response = await fetch(apiUrl + '/tenants', options);
-        const data = await response.json();
-
-        tenantId = data.id;
-        console.log('Tenant skapad:', tenantId);
-        return tenantId;
+        const response = await fetch(url + "/menu", options);
+        const data = await response.json()
+        return data.items;
     } catch (error) {
-        console.error('Fel vid skapande av Tenant:', error);
+        console.log("Fel:", response.status, error);
     }
 }
 
-// Funktion för att hämta menyn
-export async function fetchMenu() {
-    if (!apiKey || !tenantId) {
-        console.error("API-nyckel och Tenant-ID krävs för att hämta menyn.");
-        return;
-    }
-    try {
-        const options = {
-            method: 'GET',
-            headers: {
-                "x-zocom": apiKey
-            }
-        };
-        const response = await fetch(apiUrl + '/menu', options);
-        const data = await response.json();
+async function sendOrder(cart) {
+    const bodyToSend = { items: cart };
 
-        console.log('Menyn hämtad:', data);
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "x-zocom": KEY,
+        },
+        body: JSON.stringify(bodyToSend),
+    };
+    try {
+        const response = await fetch(url + ID + "/orders", options);
+
+        if (!response.ok) {
+            console.error(
+                `Fel vid anrop: ${response.status} ${response.statusText}`
+            );
+            return;
+        }
+
+        const data = await response.json();
+        console.log(data);
+        console.log(response.status);
         return data;
     } catch (error) {
-        console.error('Fel vid hämtning av menyn:', error);
+        console.log("Fel:", error.message);
     }
 }
+
+export { sendOrder, getMenu};
