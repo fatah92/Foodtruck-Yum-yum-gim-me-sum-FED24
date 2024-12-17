@@ -9,7 +9,7 @@
     <!-- Modular JavaScript Files -->
     <script type="module" defer src="javascript/api.js"></script>
     <script type="module" defer src="javascript/cart.js"></script>
-    <script type="module" defer src="javascript/eta.js"></script>
+    <script type="module" defer src="javascript/menu.js"></script>
     <script type="module" defer src="javascript/script.js"></script>
 </head>
 <body>
@@ -40,22 +40,7 @@
             </div>
         </div>
         <div class="menu-container">
-            <!-- Menu Items -->
-            <div class="menu-item">
-                <h3>KARLSTAD <span>9 SEK</span></h3>
-                <p>kantarell, scharlottenlök, morot, bladpersilja</p>
-                <button onclick="addToCart('Karlstad', 9)">+</button>
-            </div>
-            <div class="menu-item">
-                <h3>BANGKOK <span>9 SEK</span></h3>
-                <p>morot, salladslök, chili, kokos, lime, koriander</p>
-                <button onclick="addToCart('Bangkok', 9)">+</button>
-            </div>
-            <div class="menu-item">
-                <h3>HO CHI MINH <span>9 SEK</span></h3>
-                <p>kål, salladslök, chili, vitlök, ingefära, tofu</p>
-                <button onclick="addToCart('Ho Chi Minh', 9)">+</button>
-            </div>
+            <!-- Dynamisk meny kommer att importeras här -->
         </div>
     </section>
 
@@ -70,12 +55,6 @@
     </section>
 
     <!-- Order Status Section -->
-    <section class="order-status" id="status" style="display: none;">
-        <h2>DINA WONTONS TILLAGAS!</h2>
-        <p>ETA 5 MIN</p>
-        <p>#4KJWSD2</p>
-        <button>SE KVITTO</button>
-        <button onclick="resetOrder()">GÖR EN NY BESTÄLLNING</button>
-    </section>
+    <section class="order-status" id="status" style="display: none;"></section>
 </body>
 </html>
